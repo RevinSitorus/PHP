@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Nilai Mahasiswa</h1>
+    <h1 >Nilai Mahasiswa</h1>
     <form action="" method="POST">
         <label for="hadir">Nilai Kehadiran:</label><br>
         <input type="text" id="hadir" name="hadir"><br>
