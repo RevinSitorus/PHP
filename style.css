@@ -1,0 +1,42 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h2{
+
+    margin-top: 1em;
+    padding: 8px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#error{
+    margin-top: 16px;
+    background-color: rgb(231, 172, 172);
+    color: rgb(85, 0, 0);
+}
+
+#success{
+    margin-top: 200px;
+    background-color: rgb(172, 231, 172);
+    color: rgb(0, 85, 0);
+}
+
+input[type="text"]{
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+
+button{
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 1em;
+    color: white;
+    padding: 0.8em;
+    background-color: rgb(30, 109, 255);
+}
+
