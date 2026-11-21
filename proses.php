@@ -27,7 +27,8 @@
 
         <button type="submit">Simpan</button>
     </form>
-
+    
+    <a href="table.php">Lihat Nilai</a>
     <?php
         include 'database.php';
 
@@ -47,27 +48,34 @@
 
             // Basic validation
             if (empty($nama)) {
-                die("<h2 id='error'>Please provide valid input data.</h2>");
-            }
-
-            // 4. Prepare the SQL statement with placeholders (?)
-            $stmt = $conn->prepare("INSERT INTO nilai_mahasiswa (nama, nilai_kehadiran, nilai_praktikum, nilai_uts, nilai_uas) VALUES (?, ?, ?, ?, ?)");
-
-            // 5. Bind parameters: name is a string and the four scores are integers
-            $stmt->bind_param("siiii", $nama, $nilai, $praktikum, $uts, $uas);
-
-            // 6. Execute and check result
-            if ($stmt->execute()) {
-                echo "<h2 id='success'>Record saved successfully!</h2>";
+                echo "<script>alert('Please provide valid input data.');</script>";
             } else {
-                echo "<h2 id='error'>Error saving record: " . $stmt->error . "</h2>";
+                // 4. Prepare the SQL statement with placeholders (?)
+                $stmt = $conn->prepare("INSERT INTO nilai_mahasiswa (nama, nilai_kehadiran, nilai_praktikum, nilai_uts, nilai_uas) VALUES (?, ?, ?, ?, ?)");
+
+                if ($stmt === false) {
+                    echo "<script>alert('Database error: " . addslashes($conn->error) . "');</script>";
+                } else {
+                    // 5. Bind parameters: name is a string and the four scores are integers
+                    $stmt->bind_param("siiii", $nama, $nilai, $praktikum, $uts, $uas);
+
+                    // 6. Execute and check result
+                    if ($stmt->execute()) {
+                        
+                        echo "<h2 id='success'>Record saved successfully!</h2>";
+                    } else {
+                        echo "<h2 id='error'>Error saving record: " . htmlspecialchars($stmt->error) . "</h2>";
+                    }
+
+                    // Close statement
+                    $stmt->close();
+                }
             }
-            // Close statement
-            $stmt->close();
         }
         // Close connection
         $conn->close();
     ?>
+    
 </body>
 </html>
 
